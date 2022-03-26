@@ -1,0 +1,27 @@
+.button {
+  border-radius: var(--radius-md);
+  border: none;
+  outline: none;
+  background-color: var(--primary-contrast);
+  color: #fff;
+  text-transform: uppercase;
+  font-size: var(--text-sm);
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  padding: var(--spacing-md);
+  cursor: pointer;
+  transition: var(--medium-paced-transition);
+}
+
+.button:hover {
+  background-color: var(--primary-color);
+}
+
+input {
+  color: var(--grey-2);
+}
+
+input:focus {
+  outline: 1px solid var(--primary-color);
+}
