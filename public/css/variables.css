@@ -24,10 +24,14 @@
   --spacing-sm: .5rem;
   --spacing-md: 1rem;
   --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
 
   /* Box-shadow */
   --primary-shadow: 0px 0px 50px 10px rgba(64,115,67, .4);
 
   /* Transitions */
   --medium-paced-transition: all ease .5s;
+
+  /* Sizes */
+  --header-height: 6rem;
 }

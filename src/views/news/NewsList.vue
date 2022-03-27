@@ -1,5 +1,6 @@
 <template>
-  <div>NewsList</div>
+<div></div>
+  <!-- <div>NewsList</div> -->
 </template>
 
 <script>
