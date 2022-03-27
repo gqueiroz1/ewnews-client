@@ -1,8 +1,17 @@
 <template>
   <div id="app">
+    <ew-header />
     <router-view/>
   </div>
 </template>
+
+<script>
+import EWHeader from './components/EWHeader.vue'
+
+export default {
+  components: { 'ew-header': EWHeader }
+}
+</script>
 
 <style>
 #app {

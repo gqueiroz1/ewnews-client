@@ -4,11 +4,12 @@
       <h1 class="page-login__title">EWNews</h1>
       <div class="page-login__login-box">
         <span class="page-login__login-title">{{ actionLabel }}</span>
-        <form class="page-login__form">
+        <form @submit.prevent="handleFormAction" class="page-login__form">
           <div v-if="!isLogin" class="page-login__input-wrapper">
             <label class="page-login__input-label" for="fullname">Full name</label>
             <input v-model="user.fullName" class="page-login__input" type="text" name="fullname">
           </div>
+          <p v-if="hasFormError" class="page-login__form-error-message">{{ formErrorMessage }}</p>
           <div class="page-login__input-wrapper">
             <label class="page-login__input-label" for="email">Email</label>
             <input v-model="user.email" class="page-login__input" type="email" name="email">
@@ -27,6 +28,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data () {
     return {
@@ -34,7 +37,8 @@ export default {
         fullName: '',
         email: '',
         password: ''
-      }
+      },
+      formErrorMessage: ''
     }
   },
 
@@ -45,6 +49,42 @@ export default {
 
     actionLabel () {
       return this.isLogin ? 'Login' : 'Register'
+    },
+
+    hasFormError () {
+      return !!this.formErrorMessage
+    }
+  },
+
+  methods: {
+    ...mapActions('user', ['saveUser', 'login']),
+
+    async handleFormAction () {
+      if (this.isLogin) return this.handleLogin(this.user)
+
+      return this.handleRegister()
+    },
+
+    async handleRegister () {
+      try {
+        await this.saveUser(this.user)
+        this.handleLogin()
+      } catch (e) {
+        console.log(e)
+      }
+    },
+
+    async handleLogin () {
+      try {
+        const response = await this.login(this.user)
+        localStorage.setItem('token', response.data.token)
+        localStorage.setItem('user', JSON.stringify(response.data.user))
+        this.$router.push('/news')
+      } catch (e) {
+        this.formErrorMessage = e.message || ''
+        this.user.email = ''
+        this.user.password = ''
+      }
     }
   }
 }
@@ -110,6 +150,12 @@ export default {
   border: 1px solid var(--grey-1);
   border-radius: var(--radius-sm);
   flex-basis: 100%;
+}
+
+.page-login__form-error-message {
+  text-align: left;
+  margin-bottom: var(--spacing-sm);
+  color: var(--negative-color);
 }
 
 .page-login__sign-up {
