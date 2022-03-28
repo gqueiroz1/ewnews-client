@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <ew-header @open-menu="openMenuDrawer"/>
+    <ew-header v-if="isLogged" @open-menu="openMenuDrawer"/>
     <menu-drawer :is-menu-open="isMenuOpen" @close-menu-drawer="closeMenuDrawer" />
-    <router-view class="app-view"/>
+    <router-view/>
   </div>
 </template>
 
@@ -19,6 +19,14 @@ export default {
   data () {
     return {
       isMenuOpen: false
+    }
+  },
+
+  computed: {
+    isLogged () {
+      if (this.$route.name === null) return false
+
+      return this.$route.name !== 'Login' && this.$route.name !== 'Register'
     }
   },
 
@@ -39,12 +47,6 @@ export default {
   font-family: Poppins, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-}
-
-.app-view {
-  margin-top: var(--header-height);
-  padding: var(--spacing-md);
 }
 </style>

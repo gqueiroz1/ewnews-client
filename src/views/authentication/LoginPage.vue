@@ -109,6 +109,7 @@ export default {
   margin-bottom: var(--spacing-lg);
   font-size: var(--text-xl);
   color: #fff;
+  text-align: center;
 }
 
 .page-login__login-box {
@@ -124,6 +125,8 @@ export default {
   display: inline-block;
   margin-bottom: var(--spacing-md);
   font-weight: bold;
+  width: 100%;
+  text-align: center;
 }
 
 .page-login__button {
@@ -142,14 +145,10 @@ export default {
   text-align: left;
   flex-basis: 100%;
   color: var(--grey-1);
-  margin-bottom: var(--spacing-xs);
 }
 
 .page-login__input {
-  padding: var(--spacing-md);
-  border: 1px solid var(--grey-1);
-  border-radius: var(--radius-sm);
-  flex-basis: 100%;
+  width: 100%;
 }
 
 .page-login__form-error-message {
@@ -158,9 +157,14 @@ export default {
   color: var(--negative-color);
 }
 
+.page-login__button {
+  width: 100%;
+}
+
 .page-login__sign-up {
   margin-top: var(--spacing-sm);
   color: var(--grey-1);
+  text-align: center;
 }
 
 .page-login__sign-up--link {

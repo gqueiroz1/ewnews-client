@@ -44,7 +44,6 @@ export default {
 
   methods: {
     closeMenuDrawer () {
-      console.log('teste')
       this.$emit('close-menu-drawer')
     }
   }
@@ -86,7 +85,7 @@ export default {
   width: 100%;
   text-align: left;
   padding: var(--spacing-md);
-  transition: var(--medium-paced-transition);
+  transition: all var(--medium-paced-transition);
 }
 
 .menu-drawer__menu-item:hover {

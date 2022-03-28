@@ -21,11 +21,13 @@ const actions = {
     }
   },
 
-  login: async (_, payload) => {
+  login: async ({ commit }, payload) => {
     try {
       const response = await axios.post('/user/login', {
         body: { ...payload }
       })
+
+      commit('setUser', response)
 
       return response
     } catch (e) {
@@ -37,7 +39,11 @@ const actions = {
 
 }
 
-const mutations = {}
+const mutations = {
+  setUser: (state, payload) => {
+    state.user = payload.data.user
+  }
+}
 
 export default {
   namespaced: true,

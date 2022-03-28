@@ -7,14 +7,36 @@
       </router-link>
     </div>
     <div class="ew-header__user-box">
-      <p class="ew-header__user-name">Guilherme Queiróz</p>
-      <p class="ew-header__user-email">g.aqueiroz19@gmail.com</p>
+      <p class="ew-header__user-name">{{ loggedUser.fullName }}</p>
+      <p class="ew-header__user-email">{{ loggedUser.email }}</p>
     </div>
   </header>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
+  data () {
+    return {
+      loggedUser: null
+    }
+  },
+
+  created () {
+    console.log(this.user)
+
+    if (Object.keys(this.user).length) {
+      this.loggedUser = this.user
+    } else {
+      this.loggedUser = JSON.parse(localStorage.getItem('user')) || {}
+    }
+  },
+
+  computed: {
+    ...mapGetters('user', ['user'])
+  },
+
   methods: {
     openMenuDrawer () {
       this.$emit('open-menu')
@@ -37,6 +59,7 @@ export default {
   right: 0;
   left: 0;
   top: 0;
+  box-shadow: var(--small-shadow);
 }
 
 .ew-header__menu {
