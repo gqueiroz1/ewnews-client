@@ -29,6 +29,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import api from '@/assets/js/api'
 
 export default {
   data () {
@@ -79,6 +80,7 @@ export default {
         const response = await this.login(this.user)
         localStorage.setItem('token', response.data.token)
         localStorage.setItem('user', JSON.stringify(response.data.user))
+        api.defaults.headers.Authorization = 'Bearer ' + response.data.token
         this.$router.push('/news')
       } catch (e) {
         this.formErrorMessage = e.message || ''
@@ -117,6 +119,8 @@ export default {
   box-shadow: var(--primary-shadow);
   padding: 1rem;
   border-radius: var(--radius-lg);
+  width: 400px;
+  max-width: 90vw;
 }
 
 .page-login__login-title {
@@ -172,5 +176,11 @@ export default {
   color: var(--blue-1);
   font-weight: bold;
   text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  .page-login__title {
+    font-size: var(--text-lg);
+  }
 }
 </style>

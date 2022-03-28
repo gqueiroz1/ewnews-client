@@ -129,4 +129,15 @@ export default {
 .page-news-form__cancel-button:hover {
   background-color: var(--grey-1);
 }
+
+@media (max-width: 768px) {
+  .page-news-form__input-wrapper--title,
+  .page-news-form__input-wrapper--category {
+    width: 100%;
+  }
+
+  .page-news-form__actions .button {
+    width: 100%;
+  }
+}
 </style>

@@ -42,12 +42,9 @@ export default {
   margin-bottom: var(--spacing-md);
 }
 
-.news-card:hover {
-  transform: translateY(-3px);
-}
-
 .news-card__header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--spacing-md);
@@ -72,5 +69,12 @@ export default {
 
 .news-card__description {
   color: var(--grey-2);
+}
+
+@media (max-width: 768px) {
+  .news-card__title {
+    flex-basis: 100%;
+    margin-bottom: var(--spacing-sm);
+  }
 }
 </style>

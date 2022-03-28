@@ -3,7 +3,7 @@
     <div v-if="isMenuOpen" class="menu-drawer">
       <i class="fa-solid fa-xmark menu-drawer__close-button" @click="closeMenuDrawer"></i>
       <div class="menu-drawer__menu-list">
-        <router-link exact-active-class="active-link" v-for="(link, index) in menuLinks" :key="index" :to="link.link" @click.native="closeMenuDrawer" class="menu-drawer__menu-item">
+        <router-link exact-active-class="active-link" v-for="(link, index) in menuLinks" :key="index" :to="link.link" @click.native="link.handler" class="menu-drawer__menu-item">
           <i class="fa-solid menu-drawer__menu-item-icon" :class="link.icon"></i>
           {{ link.label }}
         </router-link>
@@ -26,17 +26,26 @@ export default {
         {
           label: 'News list',
           link: '/news',
-          icon: 'fa-rectangle-list'
+          icon: 'fa-rectangle-list',
+          handler: this.closeMenuDrawer
         },
         {
           label: 'Create news',
           link: '/news/create',
-          icon: 'fa-circle-plus'
+          icon: 'fa-circle-plus',
+          handler: this.closeMenuDrawer
         },
         {
           label: 'Create categories',
           link: '/categories/create',
-          icon: 'fa-circle-plus'
+          icon: 'fa-circle-plus',
+          handler: this.closeMenuDrawer
+        },
+        {
+          label: 'Logout',
+          link: '/login',
+          icon: 'fa-arrow-right-from-bracket',
+          handler: this.logOut
         }
       ]
     }
@@ -45,6 +54,12 @@ export default {
   methods: {
     closeMenuDrawer () {
       this.$emit('close-menu-drawer')
+    },
+
+    logOut () {
+      localStorage.clear()
+      this.closeMenuDrawer()
+      this.$router.push('/login')
     }
   }
 }
@@ -60,7 +75,8 @@ export default {
   background-color: #fff;
   bottom: 0;
   height: 100vh;
-  min-width: 400px;
+  width: 400px;
+  max-width: 90vw;
   box-shadow: var(--primary-shadow);
 }
 

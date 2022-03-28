@@ -94,4 +94,16 @@ export default {
   font-size: var(--text-sm);
   margin-bottom: var(--spacing-xs);
 }
+
+@media (max-width: 550px) {
+  .ew-header__title {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .ew-header__user-box {
+    display: none;
+  }
+}
 </style>

@@ -5,7 +5,7 @@
         <h2 class="page-content-header__title">{{ title }}</h2>
         <router-link v-if="!noHeaderButton" :to="headerButtonSettings.link" class="button page-content-header__button">
           <i :class="headerButtonSettings.icon" class="page-content-header__button-icon"></i>
-          {{ headerButtonSettings.label }}
+          <div class="page-content-header__button-label" v-if="!$_isSmall">{{ headerButtonSettings.label }}</div>
         </router-link>
       </slot>
     </div>
@@ -19,7 +19,11 @@
 </template>
 
 <script>
+import screenMixin from '@/mixins/screen'
+
 export default {
+  mixins: [screenMixin],
+
   props: {
     title: {
       type: String
@@ -50,7 +54,12 @@ export default {
   margin: var(--spacing-md) 0;
 }
 
-.page-content-header__button-icon {
-  margin-right: var(--spacing-sm);
+.page-content-header__button {
+  display: flex;
+  align-items: center;
+}
+
+.page-content-header__button-label {
+  margin-left: var(--spacing-sm);
 }
 </style>

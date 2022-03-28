@@ -71,7 +71,12 @@ export default {
     ...mapActions('news', ['fetchNews']),
 
     searchNews () {
-      this.$router.replace({ query: { title: this.search } })
+      if (!this.search) {
+        this.$router.replace({ path: '/news' })
+      } else {
+        this.$router.replace({ query: { title: this.search } })
+      }
+
       this.fetchNews(`title=${this.search}`)
     }
   }
@@ -111,5 +116,11 @@ export default {
 
 .page-news-list__empty-message {
   font-size: var(--text-lg);
+}
+
+@media (max-width: 500px) {
+  .page-news-list__filter-icon {
+    display: none;
+  }
 }
 </style>

@@ -116,4 +116,10 @@ export default {
 .page-category-form__cancel-button:hover {
   background-color: var(--grey-1);
 }
+
+@media (max-width: 768px) {
+  .page-category-form__actions .button {
+    width: 100%;
+  }
+}
 </style>
